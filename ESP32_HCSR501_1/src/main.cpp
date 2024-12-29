@@ -1,7 +1,7 @@
 #include <esp_now.h>
 #include <WiFi.h>
 #include "DHT.h"
-
+// En este codigo se hace la lectura de temperatura y humedad, se pone la tpl5110 en bajo consumo y luego se activa el modo hibernacion
 // Configuración del sensor DHT
 #define DHTPIN 33
 #define DHTTYPE DHT11
