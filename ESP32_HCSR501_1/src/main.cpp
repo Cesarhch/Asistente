@@ -1,37 +1,43 @@
 #include <esp_now.h>
 #include <WiFi.h>
+#include "DHT.h"
+
+// Configuración del sensor DHT
+#define DHTPIN 33
+#define DHTTYPE DHT11
+#define TPL 25
+DHT dht(DHTPIN, DHTTYPE);
+
+// Dirección MAC de la ESP32 receptora
+uint8_t receiverAddress[] = {0xE0, 0x5A, 0x1B, 0x66, 0x57, 0x38};
 
 // Declaración del tipo de mensaje
 enum MessageType {
-  SENSOR_DATA = 0,
-  NUMBER_DATA = 1 // Identificador para mensajes de tipo número
+  SENSOR_DATA
 };
 
 // Estructura para el mensaje con identificador
 typedef struct {
-  MessageType type;  // Identificador del tipo de mensaje
-  int number;        // Número a enviar
-} NumberMessage;
+  MessageType type;
+  float temperature;
+  float humidity;
+} SensorMessage;
 
-NumberMessage message;
-
-// Dirección MAC de la ESP32 receptora (cambiar según la dirección real)
-uint8_t receiverAddress[] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF}; 
-
-// Pin del sensor HC-SR501
-const int pirPin = 25;  // Cambia según la conexión
+SensorMessage dataToSend;
 
 // Callback para notificar estado de envío
 void onSent(const uint8_t *mac_addr, esp_now_send_status_t status) {
-  Serial.print("Paquete enviado con estado: ");
+  Serial.print("Estado del envío: ");
   Serial.println(status == ESP_NOW_SEND_SUCCESS ? "Éxito" : "Fallido");
 }
 
 void setup() {
   Serial.begin(9600);
-
-  // Configurar el pin del PIR
-  pinMode(pirPin, INPUT);
+  pinMode(TPL, OUTPUT);
+  digitalWrite(TPL, LOW);
+  // Inicializar el sensor DHT
+  dht.begin();
+  Serial.println("Sensor DHT inicializado.");
 
   // Inicializar Wi-Fi en modo estación
   WiFi.mode(WIFI_STA);
@@ -39,38 +45,47 @@ void setup() {
   // Inicializar ESP-NOW
   if (esp_now_init() != ESP_OK) {
     Serial.println("Error al inicializar ESP-NOW");
-    while (true);  // Detener ejecución si hay un fallo crítico
+    return;
   }
   esp_now_register_send_cb(onSent);
 
   // Añadir el receptor
   esp_now_peer_info_t peerInfo = {};
   memcpy(peerInfo.peer_addr, receiverAddress, 6);
-  peerInfo.channel = 0;  // Usar canal por defecto
+  peerInfo.channel = 0;
   peerInfo.encrypt = false;
 
   if (esp_now_add_peer(&peerInfo) != ESP_OK) {
     Serial.println("Error al añadir el receptor.");
-    while (true);  // Detener ejecución si hay un fallo crítico
+    return;
   }
 
   Serial.println("ESP-NOW inicializado y receptor añadido.");
 }
 
 void loop() {
-  // Leer el estado del PIR
-  int currentState = digitalRead(pirPin);
+  // Leer datos del sensor DHT
+  float temp = dht.readTemperature();
+  float hum = dht.readHumidity();
 
-  if (currentState == HIGH) {
-    // Preparar el mensaje
-    message.type = NUMBER_DATA;  // Tipo del mensaje
-    message.number = 11;         // Valor del número a enviar
-
-    // Enviar mensaje
-    esp_now_send(receiverAddress, (uint8_t *)&message, sizeof(message));
-    //Serial.println("Número 11 enviado.");
-    delay(10000);  // Esperar antes de enviar nuevamente
+  // Comprobar si la lectura es válida
+  if (isnan(temp) || isnan(hum)) {
+    Serial.println("Error al leer el sensor DHT");
+    delay(2000);
+    return;
   }
 
-  delay(2000);  // Pequeño retardo para evitar rebotes
+  // Preparar datos para enviar
+  dataToSend.type = SENSOR_DATA;
+  dataToSend.temperature = temp;
+  dataToSend.humidity = hum;
+  delay(1000);
+  // Enviar datos
+  esp_now_send(receiverAddress, (uint8_t *)&dataToSend, sizeof(dataToSend));
+
+  // Retardo antes de enviar nuevamente
+  delay(1000);
+  digitalWrite(TPL, HIGH);
+  delay(1000);
+  esp_deep_sleep_start();
 }
