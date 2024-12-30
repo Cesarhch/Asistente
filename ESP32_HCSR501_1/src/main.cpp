@@ -86,6 +86,4 @@ void loop() {
   // Retardo antes de enviar nuevamente
   delay(1000);
   digitalWrite(TPL, HIGH);
-  delay(1000);
-  esp_deep_sleep_start();
 }
