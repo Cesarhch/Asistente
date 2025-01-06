@@ -1,8 +1,10 @@
 from tkinter import *
+from contexto import Contexto
 
 def mostrar_ventana(callback_obtener_texto):
-    """Muestra una ventana con una entrada de texto y un botón."""
-    ventana = Tk()
+    #Muestra una ventana con una entrada de texto y un botón.
+    Contexto.ventana = Tk()
+    ventana = Contexto.ventana
     ventana.geometry("+%d+%d" % (ventana.winfo_screenwidth() - 300, 0))
     ventana.title("Lara")
 
@@ -21,3 +23,16 @@ def mostrar_ventana(callback_obtener_texto):
     boton.pack()
 
     return ventana
+
+def cerrar_todo():
+    #Cierra la ventana y realiza cualquier limpieza necesaria.
+    if Contexto.ventana is not None:
+        try:
+            Contexto.ventana.quit()  # Detiene el ciclo de eventos
+            Contexto.ventana.destroy()  # Cierra la ventana
+            Contexto.ventana = None  # Limpia la referencia
+            print("Ventana cerrada correctamente desde interfaz.")
+        except Exception as e:
+            print(f"Error al cerrar la ventana: {e}")
+    else:
+        print("No hay ventana activa para cerrar.")

@@ -13,45 +13,63 @@ from langchain_core.runnables import RunnablePassthrough
 from langchain_core.output_parsers import StrOutputParser
 from langchain.retrievers.multi_query import MultiQueryRetriever
 from langchain.schema import HumanMessage
+import os
+from unidecode import unidecode
 
-def configurar_modelo_remoto(question):
+def contar_archivos_en_directorio(directorio):
+    #Cuenta los archivos en un directorio dado.
+    directorio="/Users/cesarhernandez/Documents/PlatformIO/Projects"
+    if not os.path.exists(directorio):
+        return f"El directorio {directorio} no existe."
     
-    #Configura el modelo remoto usando HuggingFaceEndpoint.
-    #Returns:
-    #    chain_remote: Cadena para ejecutar el modelo remoto.
+    if not os.path.isdir(directorio):
+        return f"{directorio} no es un directorio válido."
     
-    llm_remote = HuggingFaceEndpoint(
-    endpoint_url="https://api-inference.huggingface.co/models/microsoft/Phi-3-mini-4k-instruct",
-    huggingfacehub_api_token="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_",
-    temperature=0.8,  # Ajuste para respuestas más variadas
-    top_k=100,
-    top_p=0.9,
-    model_kwargs={
-        "max_length": 1000  # Mover aquí para eliminar la advertencia
-        }
+    archivos = []
+    carpetas = []
+
+    # Clasificar elementos en archivos y carpetas
+    for item in os.listdir(directorio):
+        ruta_completa = os.path.join(directorio, item)
+        if os.path.isfile(ruta_completa):
+            archivos.append(item)
+        elif os.path.isdir(ruta_completa):
+            carpetas.append(item)
+
+    # Crear la respuesta
+    respuesta = (
+        f"El directorio {directorio} contiene:\n"
+        f"- {len(archivos)} archivos\n"
+        f"- {len(carpetas)} carpetas\n"
     )
 
-    prompt_remote = PromptTemplate(
-      input_variables=["question"],
-      template=(
-        "Responde a la siguiente pregunta de manera clara y breve.\n\n"
-        "Pregunta: {question}\n"
-        "Respuesta:"
-      )
-    )
+    if archivos:
+        respuesta += "\nArchivos:\n" + "\n".join(archivos)
+    if carpetas:
+        respuesta += "\n\nCarpetas:\n" + "\n".join(carpetas)
 
-    chain_remote = prompt_remote | llm_remote  # Uso de RunnableSequence
-    return chain_remote
-
-#Aqui empieza el modelo local
+    return respuesta
 
 # Configuración del modelo local (Ollama)
-def consultar_modelo_local(pregunta):
+def consultar_agente_tecnico(pregunta):
+
+    # Verificar si la pregunta solicita conteo de archivos
+    pregunta="cuantos archivos hay en el directorio documentos"
     
+    if "archivos" in unidecode(pregunta.lower()):
+        # Extraer el nombre del directorio de la pregunta (puedes ajustar el parseo)
+        palabras = pregunta.split()
+        indice_directorio = palabras.index("en") + 1 if "en" in palabras else -1
+        if indice_directorio != -1 and indice_directorio < len(palabras):
+            directorio = palabras[indice_directorio]
+            return contar_archivos_en_directorio(directorio)
+        else:
+            return "Por favor, especifica un directorio para contar los archivos."
+
     llm_local = ChatOllama(model="phi3")
-    local_path="/Users/cesarhernandez/Documents/PlatformIO/Projects/server_IA/rag/managment.txt"
-    collection_name="managment-rag"
-    custom_db_directory="/Users/cesarhernandez/Documents/PlatformIO/Projects/server_IA/rag/managment"
+    local_path="/Users/cesarhernandez/Documents/PlatformIO/Projects/server_IA/rag/tecnico.txt"
+    collection_name="tecnico-rag"
+    custom_db_directory="/Users/cesarhernandez/Documents/PlatformIO/Projects/server_IA/rag/tecnico"
     loader = TextLoader(file_path=local_path)
     data = loader.load()
 
@@ -66,7 +84,7 @@ def consultar_modelo_local(pregunta):
     )
     
     QUERY_PROMPT = ChatPromptTemplate.from_messages([
-        HumanMessage(content="""Eres una asistente y te llamas Lara. 
+        HumanMessage(content="""Eres una asistente y te llamas Agente Tecnico. 
         Pregunta: {question}""")
     ])
     retriever = MultiQueryRetriever.from_llm(

@@ -1,7 +1,8 @@
 import serial
 from agentmanager import responder_agente_managment
-from voz import play_audio
+from voz import play_audio, stop_audio_thread
 from modelos import configurar_modelo_remoto
+from terminartodo import finalizar_todo
 
 def obtener_texto(entrada, ventana=None):
   # Si entrada es un widget de Tkinter
@@ -11,17 +12,22 @@ def obtener_texto(entrada, ventana=None):
     # Si entrada es un string directo
     texto_introducido_ventana = entrada
   if texto_introducido_ventana.strip():  
-    texto_introducido = texto_introducido_ventana
-    #entrada.delete(0, END)
+    texto_introducido = texto_introducido_ventana.strip().lower()
+    
+    # Detener cualquier audio en reproducción
+    stop_audio_thread()
+    
+  if texto_introducido_ventana.lower() == "terminar todo":
+    play_audio("ok, cierro sesión")
+    finalizar_todo()
+    return
   if texto_introducido_ventana.lower() == "terminar ventana":
     play_audio("adios, debes cerrar la ventana en manual")
-    #ventana.destroy()
     return
   if texto_introducido_ventana.lower().startswith("escribir datos "):
     phrase_to_remember = texto_introducido_ventana[len("escribir datos "):].strip()
-    save_cesar(phrase_to_remember)
+    #save_cesar(phrase_to_remember)
     play_audio("Información guardada, " + phrase_to_remember)
-    entrada.delete(0, END)
     return
   if texto_introducido_ventana.lower() == "enciende la luz del comedor":
     play_audio("enciendo el comedor")
@@ -29,7 +35,6 @@ def obtener_texto(entrada, ventana=None):
     dato="c1"
     ser.write(dato.encode('utf-8'))
     ser.close()  
-    entrada.delete(0, END)
     return
   if texto_introducido_ventana.lower() == "apaga la luz del comedor":
     play_audio("apago el comedor")
@@ -37,7 +42,6 @@ def obtener_texto(entrada, ventana=None):
     dato="c0"
     ser.write(dato.encode('utf-8'))
     ser.close()
-    entrada.delete(0, END)
     return
   
   else:
