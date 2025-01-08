@@ -1,8 +1,3 @@
-# Asistent
-Code in charge of collecting signals and saving the information on a microsd
-Card in charge of directing the reception of messages
-Olimex ESP32 EVB
-
 # Asistente con ESP32 y Python
 
 Este proyecto combina el uso de dispositivos ESP32 y scripts en Python para crear un sistema integrado que recolecta datos de sensores, los procesa y almacena, proporcionando además interacción y visualización en una computadora personal.
@@ -20,7 +15,7 @@ El proyecto está organizado en varios módulos independientes, cada uno con un 
     - `platformio.ini`: Archivo de configuración de PlatformIO.
 
 - **ESP32_central/**
-  - **Descripción:** Módulo central que recibe datos de otros dispositivos ESP32 mediante ESP-NOW, los procesa y los almacena en una tarjeta SD.
+  - **Descripción:** Módulo central que utiliza una tarjeta Olimex ESP32-EVB para recibir datos de otros dispositivos ESP32 mediante ESP-NOW, procesarlos y almacenarlos en una tarjeta SD.
   - **Contenido:**
     - `src/main.cpp`: Código fuente del módulo.
     - `platformio.ini`: Archivo de configuración de PlatformIO.
@@ -40,7 +35,7 @@ El proyecto está organizado en varios módulos independientes, cada uno con un 
 ## Requisitos
 
 ### Hardware
-- Mínimo 2 dispositivos ESP32.
+- Mínimo 2 dispositivos ESP32 (incluyendo una Olimex ESP32-EVB para la central).
 - Sensores compatibles (HCSR501, DHT11).
 - Tarjeta SD y módulo de lectura/escritura para ESP32.
 - Computadora personal con Python 3.x instalado.
@@ -78,7 +73,7 @@ El proyecto está organizado en varios módulos independientes, cada uno con un 
 ## Uso
 
 1. **Inicia los módulos ESP32:**
-   - Asegúrate de que los dispositivos estén encendidos y correctamente configurados.
+   - Asegúrte de que los dispositivos estén encendidos y correctamente configurados.
 
 2. **Recolecta y almacena datos:**
    - Los módulos ESP32 recolectarán datos de los sensores y los enviarán al módulo central.
@@ -103,6 +98,4 @@ Este proyecto está bajo la licencia MIT. Consulta el archivo `LICENSE` para má
 ---
 
 Desarrollado por [Cesarhch](https://github.com/Cesarhch).
-
-
 
