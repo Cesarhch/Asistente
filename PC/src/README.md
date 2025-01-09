@@ -1,4 +1,4 @@
-# Proyecto Lara: Sistema Operativo con IA y Diseño Electrónico de Bajo Consumo
+# Proyecto Asistente: Sistema Operativo con IA y Diseño Electrónico de Bajo Consumo
 
 Este proyecto combina tecnologías avanzadas de inteligencia artificial, diseño electrónico y programación en Python para crear un sistema operativo especializado. A continuación, se presenta una descripción detallada de los archivos incluidos:
 
