@@ -2,15 +2,14 @@
 #include <WiFi.h>
 #include "DHT.h"
 
-//Las placas electronicas utilizadas son TPL5110, DHT11 y ESP32
 // Configuración del sensor DHT
 #define DHTPIN 33
 #define DHTTYPE DHT11
-#define TPL 25 
+#define TPL 25
 DHT dht(DHTPIN, DHTTYPE);
 
 // Dirección MAC de la ESP32 receptora
-uint8_t receiverAddress[] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF};
+uint8_t receiverAddress[] = {0xE0, 0x5A, 0x1B, 0x66, 0x57, 0x38};
 
 // Declaración del tipo de mensaje
 enum MessageType {
@@ -85,6 +84,8 @@ void loop() {
   esp_now_send(receiverAddress, (uint8_t *)&dataToSend, sizeof(dataToSend));
 
   // Retardo antes de enviar nuevamente
-  delay(2000);
+  delay(1000);
   digitalWrite(TPL, HIGH);
+  //delay(1000);
+  //esp_deep_sleep_start();
 }
