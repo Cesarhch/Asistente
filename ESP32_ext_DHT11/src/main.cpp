@@ -2,10 +2,11 @@
 #include <WiFi.h>
 #include "DHT.h"
 
+//Las placas electronicas utilizadas son TPL5110, DHT11 y ESP32
 // Configuración del sensor DHT
 #define DHTPIN 33
 #define DHTTYPE DHT11
-#define TPL 25
+#define TPL 25 
 DHT dht(DHTPIN, DHTTYPE);
 
 // Dirección MAC de la ESP32 receptora
