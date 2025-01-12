@@ -42,7 +42,7 @@ El programa implementa los siguientes componentes:
 3. **Configuración del código**:
    - Actualizar la dirección MAC del receptor en la línea:
      ```cpp
-     uint8_t receiverAddress[] = {0xE0, 0x5A, 0x1B, 0x66, 0x57, 0x38};
+     uint8_t receiverAddress[] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF};
      ```
      Sustitúyelo por la dirección MAC del dispositivo receptor.
 
