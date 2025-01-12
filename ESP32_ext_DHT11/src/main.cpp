@@ -9,7 +9,7 @@
 DHT dht(DHTPIN, DHTTYPE);
 
 // Dirección MAC de la ESP32 receptora
-uint8_t receiverAddress[] = {0xE0, 0x5A, 0x1B, 0x66, 0x57, 0x38};
+uint8_t receiverAddress[] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF};
 
 // Declaración del tipo de mensaje
 enum MessageType {
