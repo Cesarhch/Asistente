@@ -1,0 +1,18 @@
+
+Este circuito pone en servicio un detector de temperatura y humedad con un DHT11, recoge la señal un tarjeta ESP32 y envia esa informacion a otra ESP32 para guardar la informacion en un archivo monitoreado por un LLM.
+
+El circuito esta alimentado por dos paneles solares de 6 watios, una tarjeta MHCD42 para administrar la carga de una bateria de litio Li-ion de 1300 mAh.
+
+El circuito entra en bajo consumo consumiendo 35 nanoamperios durante 1 hora a traves de una tarjeta TPL5110, la alimentacion de la TPL5110 se hace a traves de dos supercondensadores de 1 faradio. La TPL5110 pone en marcha un rele optoacoplador que a su vez activa el paso de corriente a traves de un transistor Mosfet -P, en concreto el Mosfet 27P06. Este Mosfet sera el encargado de alimentar la ESP32 y activarla.
+
+Han sido necesarias dos resistencias a la salida de señal de la ESP32 hacia el TPL5110 en modo divisor de tension, las resistencias son de 10K y 4.7K, tambien he añadido un condensador para eliminar ruido de 100 nanofaradios. Para evitar que la ESP32 reciba tension de los supercondensadores he añadido un diodo zener, de esa manera la ESP32 recibe tension a traves de la placa MHCD42.
+
+Conexionado electrico:
+
+Los dos paneles solares de 6 vatios se conectan a la entrada de la tarjeta MHCD42 encargada de la gestion de carga de bateria, por otra parte la bateria conectada a la tarjeta MHCD42 es una bateria de litio Li-ion de 1300 mAh. El positivo de la salida de la MHCD42 esta conectado a un borne de los contactos abiertos de un rele optoacoplador y tambien esta conectado al anodo de un diodo Schottky. El catodo del diodo Schottky esta conectado al positivo de dos supercondensadores H73S, tambien esta conectado al positivo de la entrada del TPL5110. El negativo de entrada de la TPL5110 esta conectado en paralelo al pin Gate de un Mosfet canal P, el mosfet FQP27P06, por otro lado el negativo de la TPL5110 tambien esta conectado al negativo de los dos condensadores H73S. Tambien tenemos conectado el negativo al negativo de una tarjeta ESP32 Nodemcu, tambien al negativo de un condensador electrolitico de 100 nanofaradios y a un resistencia de 10 Kilo ohmios. Por otra parte el transirtor mosfet FQP27P06 tiene el pin Source conectado al otro borne del contacto abierto del rele optoacoplador anteriormente mencionado y el pin Drain esta conectado al positivo de alimentacion de la tarjeta ESP32 Nodemcu.
+
+La salida de tension de la tarjeta TPL5110 estoy alimentando el accionamiento del rele optoacoplador estando conectado el negativo de la TPL5110 al negativo del rele y el positivo de la TPL5110 al positivo del rele y al pin de señal de activacion del rele al mismo tiempo.
+
+El pin numero 25 de la ESP32 Nodemcu esta conectado al positivo del condensador de electrolitio de 100 nanofaradios y a una resistencia de 4.7 Kilo ohmios en paralelo. El otro terminal de la resistencia de 4.7 Kilo ohmios hay conectado en paralelo otra resistencia de 10 Kilo ohmios, nombrada anteriormente, y tambien esta conectado al pin Done de la TPL5110 para poner la TPL5110 en estado reposo cuando el pin se active.
+
+Por otra parte hay conectado un detector de temperatura y humedad DHT11 a la ESP32 Nodemcu, desde el pin de 3.3 voltios de la ESP32 alimento el positivo del DHT11, y desde el GND de la ESP32 alimento el negativo del DHT11, el pin de señal del DHT11 esta conectado al pin numero 33 de la ESP32 Nodemcu.
