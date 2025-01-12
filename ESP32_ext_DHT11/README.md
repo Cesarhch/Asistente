@@ -13,6 +13,7 @@ El programa implementa los siguientes componentes:
 - Lectura de temperatura y humedad con el sensor **DHT11**.
 - Comunicación inalámbrica utilizando el protocolo **ESP-NOW**.
 - Implementación de un temporizador **TPL5110** para minimizar el consumo energético.
+- Posibilidad de integrar modo de sueño profundo (**deep sleep**) para optimizar aún más el consumo.
 
 ## Requisitos de Hardware
 - Placa **ESP32**.
@@ -41,7 +42,7 @@ El programa implementa los siguientes componentes:
 3. **Configuración del código**:
    - Actualizar la dirección MAC del receptor en la línea:
      ```cpp
-     uint8_t receiverAddress[] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF};
+     uint8_t receiverAddress[] = {0xE0, 0x5A, 0x1B, 0x66, 0x57, 0x38};
      ```
      Sustitúyelo por la dirección MAC del dispositivo receptor.
 
@@ -53,12 +54,14 @@ El programa implementa los siguientes componentes:
 2. El sensor lee los datos de temperatura y humedad.
 3. Los datos se envían al receptor mediante ESP-NOW.
 4. El temporizador TPL5110 apaga el sistema para reducir el consumo energético.
+5. Existe la opción de implementar el modo de sueño profundo para ahorrar aún más energía (línea comentada en el código).
 
 ## Código
 El código fuente principal está disponible en este repositorio. Incluye:
 - Inicialización del sensor DHT11.
 - Configuración de ESP-NOW.
 - Envío periódico de datos al dispositivo receptor.
+- Uso del temporizador TPL5110 y configuración para modo de sueño profundo.
 
 ## Licencia
 Este proyecto está bajo la licencia MIT. Puedes usar, modificar y distribuir el código como desees.
