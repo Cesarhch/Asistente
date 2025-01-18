@@ -1,68 +1,118 @@
-# Proyecto: Sistema Operativo con IA y Electrónica
+# ServerIA - Proyecto Cesarhch/Asistente
 
-Este repositorio contiene múltiples scripts y archivos relacionados con el desarrollo de un sistema operativo orientado a la interacción con inteligencia artificial y hardware electrónico, basado en Linux y dispositivos IoT.
+ServerIA es un sistema integral diseñado para gestionar dispositivos IoT y realizar inferencias de modelos de lenguaje avanzados de manera local. Este proyecto combina hardware optimizado para el ahorro energético y un software sofisticado con capacidades de reconocimiento de voz, gestión de bases de datos vectoriales y comunicación en tiempo real.
 
-## Contenido del Repositorio
+---
 
-### Documentación y Esquemas
+## Contenidos del proyecto
 
-- **ESP32yTPL5110.pdf**: Descripción detallada de un circuito para medir temperatura y humedad con un sensor DHT11 y una ESP32. Incluye detalles del diseño eléctrico, componentes utilizados y conexiones. El circuito utiliza una tarjeta TPL5110 para bajo consumo y se alimenta con paneles solares y supercondensadores【20†source】.
+### Archivos principales
 
-### Código Fuente
 
-- **main.py**: Script principal que inicializa la aplicación. Controla la interfaz gráfica y la grabación de audio mediante hilos【21†source】.
+1. **`datoscasa2.txt`**
+   - Archivo con datos de ejemplo sobre monitorización ambiental y detección de presencia en habitaciones.
+   - Formato ideal para pruebas con modelos de lenguaje y consultas personalizadas.
 
-- **agentmanager.py**: Gestiona las consultas dirigidas a diferentes agentes, seleccionando entre un modelo local o técnico según el contexto del usuario【22†source】.
+2. **`tecnico.txt`**
+   - Describe las funciones y roles del asistente técnico (Lara), incluyendo:
+     - Respuestas breves y precisas.
+     - Gestión de datos ambientales y detección de eventos (e.g., presencia, temperatura).
+     - Referencias a proyectos principales como "sistema operativo con IA" y "diseño electrónico bajo consumo".
 
-- **agentelocal.py**: Configura y ejecuta un modelo de lenguaje local utilizando LangChain y Phi-3【23†source】.
+3. **`managment.txt`**
+   - Incluye datos organizativos y recordatorios:
+     - Citas importantes.
+     - Notificaciones de correos electrónicos relacionados con presentaciones técnicas y temarios educativos.
 
-- **agentetecnico.py**: Configura y ejecuta un modelo técnico local. También incluye una funcionalidad para contar archivos en directorios específicos【31†source】.
+4. **Código Python**
+   - **`agentetecnico.py`**: Implementa el asistente técnico con funciones de inferencia y comunicación basada en texto y voz.
+   - **`agentelocal.py`**: Gestiona las interacciones locales con dispositivos IoT y modelos de lenguaje.
+   - **`interfaz.py`**: Crea una interfaz para gestionar y supervisar los dispositivos conectados al sistema.
+   - **`terminartodo.py`**: Finaliza todas las operaciones activas, asegurando una gestión segura de recursos.
+   - **`hardware.py`**: Controla y supervisa los elementos físicos como sensores, relés y temporizadores.
+   - **`funciones.py`**: Reúne funciones auxiliares y utilidades para soporte del sistema principal.
+   - **`contexto.py`**: Define configuraciones de contexto, como rutas para bases de datos y modelos de lenguaje.
+   - **`agentmanager.py`**: Coordina las interacciones entre diferentes agentes y recursos.
+   - **`voz.py`**: Gestiona el reconocimiento y síntesis de voz utilizando motores como gTTS y pyttsx3.
+   - **`main.py`**: Punto de entrada principal del sistema.
+   - **`reconocimiento.py`**: Implementa el análisis y discriminación de voces.
 
-- **reconocimiento.py**: Implementa el reconocimiento de voz utilizando el modelo Vosk. Permite la interacción mediante comandos hablados y la conexión con otros módulos del sistema【24†source】.
+---
 
-- **terminartodo.py**: Maneja el cierre completo del sistema, incluyendo la terminación de procesos y la limpieza de bases de datos【25†source】.
+## Instalación
 
-- **contexto.py**: Define el contexto global de la aplicación, incluyendo variables compartidas entre módulos【26†source】.
+### Requisitos previos
+- **Hardware**:
+  - ESP32 con soporte para NodeMCU.
+  - Sensores DHT11.
+  - TPL5110 y componentes asociados (MOSFET, condensadores, etc.).
+- **Para manejo de modelos de lenguaje local (Phi-3):**
+  - Procesador: CPU de al menos 8 núcleos o GPU NVIDIA RTX 4060 Ti o superior.
+  - Memoria RAM: 16 GB como mínimo (32 GB recomendados).
+  - Almacenamiento: SSD con al menos 20 GB de espacio libre.
+  - Sistema operativo: Linux (Debian recomendado) con soporte para drivers CUDA (si se utiliza GPU).
+- **Software**:
+  - Python 3.8+.
+  - Bibliotecas necesarias: `langchain`, `gTTS`, `pyttsx3`, `serial`, entre otras.
 
-- **hardware.py**: Proporciona funcionalidades para interactuar con el hardware, como encender/apagar luces y ejecutar modelos remotos o locales【27†source】.
-
-- **funciones.py**: Contiene utilidades como limpieza de texto y guardado de información en archivos【28†source】.
-
-- **interfaz.py**: Implementa la interfaz gráfica con Tkinter, permitiendo la entrada y procesamiento de texto【30†source】.
-
-- **voz.py**: Convierte texto a voz utilizando gTTS y maneja la reproducción de audio en segundo plano【32†source】.
-
-### Archivos de Configuración y Datos
-
-- **datoscasa2.txt**: Archivo de texto que almacena información personalizada sobre el usuario y el asistente【29†source】.
-
-- **tecnico.txt**: Archivo utilizado por el modelo técnico, que contiene datos específicos del entorno y proyectos del usuario【33†source】.
-
-- **managment.txt**: Archivo utilizado por el modelo de gestión, que incluye información como correos y citas del usuario【34†source】.
-
-## Cómo Empezar
-
+### Configuración inicial
 1. Clona el repositorio:
    ```bash
-   git clone https://github.com/tu_usuario/tu_repositorio.git
+   git clone https://github.com/cesarhch/asistente.git
+   cd asistente
    ```
+2. Instala las dependencias:
+   ```bash
+   pip install -r requirements.txt
+   ```
+3. Configura los modelos de lenguaje:
+   - Define las rutas para bases de datos locales y remotas en el archivo `contexto.py`.
+   - Agrega tus tokens de HuggingFace en `modelos.py`.
 
-2. Asegúrate de tener instaladas las dependencias necesarias, como `vosk`, `gTTS`, y `LangChain`.
+4. Conecta los dispositivos:
+   - Sigue el esquema de conexiones descrito en la documentación técnica.
 
-3. Ejecuta el script principal:
+---
+
+## Uso
+
+1. **Iniciar el sistema**:
    ```bash
    python main.py
    ```
 
-## Requisitos
+2. **Comandos disponibles**:
+   - Consultas sobre estado ambiental:
+     - `¿Cuál es la temperatura actual?`
+     - `¿Qué humedad hay en la habitación principal?`
+   - Control de dispositivos IoT:
+     - `enciende la luz del comedor`.
+     - `apaga la luz del comedor`.
+   - Interacción por voz:
+     - Reconocimiento y respuesta a comandos hablados.
 
-- Python 3.8 o superior
-- Librerías:
-  - `vosk`
-  - `pyaudio`
-  - `LangChain`
-  - `gTTS`
+---
+
+## Funcionalidades avanzadas
+
+1. **Inferencia con modelos de lenguaje**:
+   - Respuesta a preguntas utilizando bases de datos vectoriales y modelos locales.
+
+2. **Reconocimiento de voz**:
+   - Identificación y discriminación de comandos hablados para diferentes usuarios.
+
+3. **Gestión de energía**:
+   - Control de consumo mediante temporizadores y componentes de baja potencia.
+
+---
+
+## Créditos
+
+- **Desarrollador principal**: Cesar (Infootec.net).
+- **Asistente**: Lara.
+
+---
 
 ## Licencia
 
-Este proyecto está bajo la licencia MIT. Consulta el archivo LICENSE para más detalles.
+Este proyecto está distribuido bajo la licencia MIT. Consulta el archivo `LICENSE` para más detalles.
