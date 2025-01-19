@@ -2,3 +2,5 @@
 Archivos agentelocal y agentetecnico:
   en IOS la libreria utilizada es : from langchain_huggingface import HuggingFaceEndpoint
   en Windows la libreria utilizada es : from langchain.llms import HuggingFaceEndpoint
+Puede ser recomendable valorar la version "full built" de ffmpeg para manejar recursos avanzados en manipulacion de audio debido a la discriminacion de voces en el archivo reconocimiento.py
+
