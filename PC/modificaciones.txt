@@ -1,3 +1,4 @@
-19.1.2025 Archivos agentelocal y agentetecnico:
+19.1.2025 
+Archivos agentelocal y agentetecnico:
   en IOS la libreria utilizada es : from langchain_huggingface import HuggingFaceEndpoint
   en Windows la libreria utilizada es : from langchain.llms import HuggingFaceEndpoint
