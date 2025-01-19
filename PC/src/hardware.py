@@ -17,7 +17,7 @@ def obtener_texto(entrada, ventana=None):
     texto_introducido = texto_introducido_ventana.strip().lower()
     
     # Detener cualquier audio en reproducción
-    stop_audio_thread()
+    #stop_audio_thread()
     
   if texto_introducido_ventana.lower() == "terminar todo":
     play_audio("ok, cierro sesión")
@@ -48,48 +48,57 @@ def obtener_texto(entrada, ventana=None):
     ser.write(dato.encode('utf-8'))
     ser.close()
     return
-  if texto_introducido_ventana.lower() == "hola lara":
+  if limpiar_texto(texto_introducido_ventana.lower()) == "hola lara":
     play_audio("Hola, en que puedo ayudarte.")
-    Contexto.creadoAsistente=1
+    Contexto.creadoAsistentev=1
+    if Contexto.creadoAsistente == 2:
+      Contexto.creadoAsistente = 1
     return
   if limpiar_texto(texto_introducido_ventana.lower()) == "hola tecnico":
     play_audio("Hola, en que puedo ayudarte.")
-    Contexto.creadoAsistente=2
+    Contexto.creadoAsistentev=2
+    if Contexto.creadoAsistente == 1:
+      Contexto.creadoAsistente = 2
     return
   if limpiar_texto(texto_introducido_ventana.lower()) == "pasame con lara":
     play_audio("ok, te paso con lara.")
-    Contexto.creadoAsistente=1
+    Contexto.creadoAsistentev=1
+    if Contexto.creadoAsistente == 2:
+      Contexto.creadoAsistente = 1
     return
   if limpiar_texto(texto_introducido_ventana.lower()) == "pasame con tecnico":
     play_audio("ok, te paso con tecnico.")
-    Contexto.creadoAsistente=2
+    Contexto.creadoAsistentev=2
+    if Contexto.creadoAsistente == 1:
+      Contexto.creadoAsistente = 2
     return
  
   else:
  
-    try:
-      resultado = configurar_modelo_remoto.chain_remote.run(question=texto_introducido)
-      print("\nRespuesta del modelo remoto:\n")
-      print(resultado)   
-    except Exception as e:
-      print(f"Error con el modelo remoto: {e}")
+    #try:
+      #print(texto_introducido)
+      #resultado = configurar_modelo_remoto.chain_remote.run(question=texto_introducido)
+      #print("\nRespuesta del modelo remoto:\n")
+      #print(resultado)   
+    #except Exception as e:
+      #print(f"Error con el modelo remoto: {e}")
       
-      try:
-        resultado = responder_agente_managment(texto_introducido)
-        if hasattr(resultado, "content") and resultado.content:
-          texto_a_reproducir = resultado.content.strip()
-        else:
-          texto_a_reproducir = resultado
-      except Exception as e:
-        print(f"Error al usar el modelo local: {e}")
-        texto_a_reproducir = "Hubo un error al procesar la solicitud."
+    try:
+      resultado = responder_agente_managment(texto_introducido)
+      if hasattr(resultado, "content") and resultado.content:
+        texto_a_reproducir = resultado.content.strip()
+      else:
+        texto_a_reproducir = resultado
+    except Exception as e:
+      print(f"Error al usar el modelo local: {e}")
+      texto_a_reproducir = "Hubo un error al procesar la solicitud."
         
-    if not texto_a_reproducir.strip():
-      texto_a_reproducir = "La respuesta está vacía."
+  if not texto_a_reproducir.strip():
+    texto_a_reproducir = " "
 
-    # Reproducir el texto final
-    print(f"Respuesta: {texto_a_reproducir}")
-    respuesta= texto_a_reproducir
+  # Reproducir el texto final
+  print(f"Respuesta: {texto_a_reproducir}")
+  respuesta= texto_a_reproducir
 
-    play_audio(respuesta)
-    return
+  play_audio(respuesta)
+  return

@@ -6,7 +6,7 @@ from hardware import obtener_texto
 from contexto import Contexto
 
 # Ejecutar el segundo código en un subshell
-#subprocess.Popen(["python3", "datostxt.py"])
+# subprocess.Popen(["python3", "datostxt.py"])
 
 def main():
     # Inicializar el evento para detener audio

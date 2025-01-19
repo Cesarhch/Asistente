@@ -1,5 +1,8 @@
 import unicodedata
 import os
+from contexto import Contexto
+import numpy as np
+from sklearn.metrics.pairwise import cosine_similarity
 
 def save_cesar(information):
   with open("/Users/cesarhernandez/Documents/PlatformIO/Projects/RAG-1/prueba2/datoscasa2.txt", "a", newline="") as file:  # Open in append mode
@@ -47,3 +50,29 @@ def contar_archivos_en_directorio(directorio):
         respuesta += "\n\nCarpetas:\n" + "\n".join(carpetas)
 
     return respuesta
+
+def es_ruido(mfccs, rms, mfcc_umbral=(-700, -600), rms_umbral=0.0006):
+    """
+    Determina si la entrada es ruido basado en los valores de MFCC y RMS.
+    """
+    # Verificar si RMS está por debajo del umbral
+    if rms < rms_umbral:
+        return True
+
+    # Verificar si MFCC promedio está en el rango del ruido
+    if np.mean(mfccs) > mfcc_umbral[0] and np.mean(mfccs) < mfcc_umbral[1]:
+        return True
+
+    return False
+
+def diferenciar_voz(mfccs, referencia_usuario, referencia_asistente):
+    """
+    Determina si el audio corresponde al usuario o al asistente.
+    """
+    similarity_user = cosine_similarity([np.mean(mfccs, axis=1)], [referencia_usuario])[0][0]
+    similarity_assistant = cosine_similarity([np.mean(mfccs, axis=1)], [referencia_asistente])[0][0]
+
+    if similarity_user > similarity_assistant:
+        return "usuario"
+    else:
+        return "asistente"

@@ -29,8 +29,8 @@ def play_audio(text):
             if os.path.exists(audio_file):
                 os.remove(audio_file)  
         except Exception as e:
-            print(f"Error con gTTS: {e}")
-            print("Usando motor de texto a voz local con la voz 'Mónica'...")
+            print(f"Error con gTTS")
+            #print("Usando motor de texto a voz local con la voz 'Mónica'...")
             """
             try:
                 # Respaldo con pyttsx3 y configuración directa de 'Mónica'

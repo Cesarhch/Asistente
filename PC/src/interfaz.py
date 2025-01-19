@@ -6,7 +6,7 @@ def mostrar_ventana(callback_obtener_texto):
     Contexto.ventana = Tk()
     ventana = Contexto.ventana
     ventana.geometry("+%d+%d" % (ventana.winfo_screenwidth() - 300, 0))
-    ventana.title("Lara")
+    ventana.title("Asistente")
 
     # Crear un widget de entrada de texto
     entrada = Entry(ventana)
