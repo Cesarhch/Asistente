@@ -8,4 +8,5 @@ Reemplazar paquete obsoleto "sklearn" por "scikit-learn"
 En windows el programa "mpg123" necesita instalacion manual
 21.1.2025
 En windows es necesario actualizar ollamaembedings y llamar desde la funcion:OllamaEmbeddings(model="phi3")
+En la actualizacion de ollamaembedings es necesario eliminar : show_progress=False
 En windows es necesario actualizar diferentes rutas en variables de entorno "path"
