@@ -10,3 +10,4 @@ En windows el programa "mpg123" necesita instalacion manual
 En windows es necesario actualizar ollamaembedings y llamar desde la funcion:OllamaEmbeddings(model="phi3")
 En la actualizacion de ollamaembedings es necesario eliminar : show_progress=False
 En windows es necesario actualizar diferentes rutas en variables de entorno "path"
+La funcion en la API del LLM tiene una actualizacion en retriever.get_relevant_documents, hay que actualizarlo con retriever.invoke
