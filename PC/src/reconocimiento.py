@@ -112,7 +112,7 @@ def record_audio():
                         play_audio("ok, te paso con tecnico.")
                         Contexto.creadoAsistente = 2
                         continue
-                    elif Contexto.text:
+                    elif (Contexto.creadoAsistente==1 or Contexto.creadoAsistente==2) and Contexto.text:
                         #print(Contexto.text)
                         Contexto.asis_usuario = False
                         Contexto.cont_usuario = 0
