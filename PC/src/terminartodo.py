@@ -26,8 +26,8 @@ def detener_procesos():
 
             
 def borrar_base_datos_chroma():
-    RUTA_BASE_DATOS = "/Users/cesarhernandez/Documents/PlatformIO/Projects/server_IA/rag/managment"
-    RUTA_BASE_DATOS_TECNICO = "/Users/cesarhernandez/Documents/PlatformIO/Projects/server_IA/rag/tecnico"
+    RUTA_BASE_DATOS = "C:/Users/cesar/Desktop/serveria/Asistente-main/PC/src/rag/managment"
+    RUTA_BASE_DATOS_TECNICO = "C:/Users/cesar/Desktop/serveria/Asistente-main/PC/src/rag/tecnico"
     try:
         if os.path.exists(RUTA_BASE_DATOS):
             shutil.rmtree(RUTA_BASE_DATOS)

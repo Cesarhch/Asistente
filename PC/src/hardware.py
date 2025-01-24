@@ -17,11 +17,15 @@ def obtener_texto(entrada, ventana=None):
     texto_introducido = texto_introducido_ventana.strip().lower()
     
     # Detener cualquier audio en reproducción
-    #stop_audio_thread()
+    stop_audio_thread()
     
   if texto_introducido_ventana.lower() == "terminar todo":
     play_audio("ok, cierro sesión")
     finalizar_todo()
+    return
+  if texto_introducido_ventana.lower() == "terminar micro":
+    play_audio("ok, cierro micro")
+    Contexto.creadoAsistente = 0
     return
   if texto_introducido_ventana.lower() == "terminar ventana":
     play_audio("adios, debes cerrar la ventana en manual")
@@ -48,41 +52,24 @@ def obtener_texto(entrada, ventana=None):
     ser.write(dato.encode('utf-8'))
     ser.close()
     return
-  if limpiar_texto(texto_introducido_ventana.lower()) == "hola lara":
+  if texto_introducido_ventana.lower() == "hola lara":
     play_audio("Hola, en que puedo ayudarte.")
-    Contexto.creadoAsistentev=1
-    if Contexto.creadoAsistente == 2:
-      Contexto.creadoAsistente = 1
+    Contexto.creadoAsistente=1
     return
   if limpiar_texto(texto_introducido_ventana.lower()) == "hola tecnico":
     play_audio("Hola, en que puedo ayudarte.")
-    Contexto.creadoAsistentev=2
-    if Contexto.creadoAsistente == 1:
-      Contexto.creadoAsistente = 2
+    Contexto.creadoAsistente=2
     return
   if limpiar_texto(texto_introducido_ventana.lower()) == "pasame con lara":
     play_audio("ok, te paso con lara.")
-    Contexto.creadoAsistentev=1
-    if Contexto.creadoAsistente == 2:
-      Contexto.creadoAsistente = 1
+    Contexto.creadoAsistente=1
     return
   if limpiar_texto(texto_introducido_ventana.lower()) == "pasame con tecnico":
     play_audio("ok, te paso con tecnico.")
-    Contexto.creadoAsistentev=2
-    if Contexto.creadoAsistente == 1:
-      Contexto.creadoAsistente = 2
+    Contexto.creadoAsistente=2
     return
  
   else:
- 
-    #try:
-      #print(texto_introducido)
-      #resultado = configurar_modelo_remoto.chain_remote.run(question=texto_introducido)
-      #print("\nRespuesta del modelo remoto:\n")
-      #print(resultado)   
-    #except Exception as e:
-      #print(f"Error con el modelo remoto: {e}")
-      
     try:
       resultado = responder_agente_managment(texto_introducido)
       if hasattr(resultado, "content") and resultado.content:
@@ -93,12 +80,12 @@ def obtener_texto(entrada, ventana=None):
       print(f"Error al usar el modelo local: {e}")
       texto_a_reproducir = "Hubo un error al procesar la solicitud."
         
-  if not texto_a_reproducir.strip():
-    texto_a_reproducir = " "
+    if not texto_a_reproducir.strip():
+      texto_a_reproducir = "La respuesta está vacía."
 
-  # Reproducir el texto final
-  print(f"Respuesta: {texto_a_reproducir}")
-  respuesta= texto_a_reproducir
+    # Reproducir el texto final
+    print(f"Respuesta: {texto_a_reproducir}")
+    respuesta= texto_a_reproducir
 
-  play_audio(respuesta)
-  return
+    play_audio(respuesta)
+    return

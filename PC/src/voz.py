@@ -15,13 +15,13 @@ def play_audio(text):
     #Convierte texto a voz y lo reproduce.
     #Usa gTTS por defecto y pyttsx3 con la voz 'Mónica' como respaldo si gTTS falla.
     def audio_worker():
-        audio_file = "/Users/cesarhernandez/Documents/PlatformIO/Projects/server_IA/temp.mp3"
+        audio_file = "C:/Users/cesar/Desktop/serveria/Asistente-main/PC/src/temp.mp3"
         try:
             # Intentar usar gTTS
             tts = gTTS(text=text, lang="es")
             tts.save(audio_file)
             # Reproducir el audio usando subprocess
-            with subprocess.Popen(["/opt/homebrew/bin/mpg123", audio_file], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL) as process:
+            with subprocess.Popen(["mpg123.exe", audio_file], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL) as process:
                 while process.poll() is None:
                     if Contexto.stop_audio.is_set():
                         process.terminate()  # Detener la reproducción
@@ -29,7 +29,7 @@ def play_audio(text):
             if os.path.exists(audio_file):
                 os.remove(audio_file)  
         except Exception as e:
-            print(f"Error con gTTS")
+            print(f"Error con gTTS: {e}")
             #print("Usando motor de texto a voz local con la voz 'Mónica'...")
             """
             try:

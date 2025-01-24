@@ -1,18 +1,15 @@
-from langchain_community.llms import HuggingFaceHub
-from langchain.prompts import PromptTemplate
-from langchain_huggingface import HuggingFaceEndpoint
-from langchain.chains import LLMChain
-from langchain_community.chat_models import ChatOllama
-from langchain.llms import HuggingFaceHub
+from langchain_community.llms import HuggingFaceHub, HuggingFaceEndpoint
 from langchain_community.document_loaders import TextLoader
-from langchain_community.embeddings import OllamaEmbeddings
-from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import Chroma
-from langchain.prompts import ChatPromptTemplate
+from langchain_ollama import ChatOllama, OllamaEmbeddings
+from langchain.prompts import PromptTemplate, ChatPromptTemplate
+from langchain.chains import LLMChain
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_core.runnables import RunnablePassthrough
 from langchain_core.output_parsers import StrOutputParser
 from langchain.retrievers.multi_query import MultiQueryRetriever
 from langchain.schema import HumanMessage
+
 
 def configurar_modelo_remoto(question):
     
@@ -48,10 +45,10 @@ def configurar_modelo_remoto(question):
 # Configuración del modelo local (Ollama)
 def consultar_modelo_local(pregunta):
     
-    llm_local = ChatOllama(model="phi3")
-    local_path="/Users/cesarhernandez/Documents/PlatformIO/Projects/server_IA/rag/managment.txt"
+    llm_local = ChatOllama(model="phi4")
+    local_path="C:/Users/cesar/Desktop/serveria/Asistente-main/PC/src/rag/managment.txt"
     collection_name="managment-rag"
-    custom_db_directory="/Users/cesarhernandez/Documents/PlatformIO/Projects/server_IA/rag/managment"
+    custom_db_directory="C:/Users/cesar/Desktop/serveria/Asistente-main/PC/src/rag/managment"
     loader = TextLoader(file_path=local_path)
     data = loader.load()
 
@@ -60,13 +57,14 @@ def consultar_modelo_local(pregunta):
 
     vector_db = Chroma.from_documents(
         documents=chunks,
-        embedding=OllamaEmbeddings(model="phi3", show_progress=False),
+        embedding=OllamaEmbeddings(model="phi3"),
         collection_name=collection_name,
         persist_directory=custom_db_directory
+        #metadata={"dimensionality": 4096}
     )
     
     QUERY_PROMPT = ChatPromptTemplate.from_messages([
-        HumanMessage(content="""Eres una asistente y te llamas Lara. 
+        HumanMessage(content="""Eres una asistente y te llamas Lara, respondes sin saludar. 
         Pregunta: {question}""")
     ])
     retriever = MultiQueryRetriever.from_llm(
@@ -78,7 +76,7 @@ def consultar_modelo_local(pregunta):
     # Configura el retriever
     #retriever = vector_db.as_retriever(search_type="similarity", search_kwargs={"k": 5})
     # Recupera documentos relevantes
-    documentos = retriever.get_relevant_documents(pregunta)
+    documentos = retriever.invoke(pregunta)
     if not documentos:
         return "No se encontraron documentos relevantes para esta consulta."
 

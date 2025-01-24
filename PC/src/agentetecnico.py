@@ -1,20 +1,17 @@
-from langchain_community.llms import HuggingFaceHub
-from langchain.prompts import PromptTemplate
-from langchain_huggingface import HuggingFaceEndpoint
+from langchain_community.llms import HuggingFaceHub, HuggingFaceEndpoint
+from langchain.prompts import PromptTemplate, ChatPromptTemplate
 from langchain.chains import LLMChain
-from langchain_community.chat_models import ChatOllama
-from langchain.llms import HuggingFaceHub
 from langchain_community.document_loaders import TextLoader
-from langchain_community.embeddings import OllamaEmbeddings
-from langchain_text_splitters import RecursiveCharacterTextSplitter
+from langchain_ollama import ChatOllama, OllamaEmbeddings
 from langchain_community.vectorstores import Chroma
-from langchain.prompts import ChatPromptTemplate
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_core.runnables import RunnablePassthrough
 from langchain_core.output_parsers import StrOutputParser
 from langchain.retrievers.multi_query import MultiQueryRetriever
 from langchain.schema import HumanMessage
 from unidecode import unidecode
 from funciones import contar_archivos_en_directorio
+
 
 # Configuración del modelo local (Ollama)
 def consultar_agente_tecnico(pregunta):
@@ -32,10 +29,10 @@ def consultar_agente_tecnico(pregunta):
         else:
             return "Por favor, especifica un directorio para contar los archivos."
 
-    llm_local = ChatOllama(model="phi3")
-    local_path="/Users/cesarhernandez/Documents/PlatformIO/Projects/server_IA/rag/tecnico.txt"
+    llm_local = ChatOllama(model="deepseek-r1:7b")
+    local_path="C:/Users/cesar/Desktop/serveria/Asistente-main/PC/src/rag/tecnico.txt"
     collection_name="tecnico-rag"
-    custom_db_directory="/Users/cesarhernandez/Documents/PlatformIO/Projects/server_IA/rag/tecnico"
+    custom_db_directory="C:/Users/cesar/Desktop/serveria/Asistente-main/PC/src/rag/tecnico"
     loader = TextLoader(file_path=local_path)
     data = loader.load()
 
@@ -44,7 +41,7 @@ def consultar_agente_tecnico(pregunta):
 
     vector_db = Chroma.from_documents(
         documents=chunks,
-        embedding=OllamaEmbeddings(model="phi3", show_progress=False),
+        embedding=OllamaEmbeddings(model="phi3"),
         collection_name=collection_name,
         persist_directory=custom_db_directory
     )
@@ -62,7 +59,7 @@ def consultar_agente_tecnico(pregunta):
     # Configura el retriever
     #retriever = vector_db.as_retriever(search_type="similarity", search_kwargs={"k": 5})
     # Recupera documentos relevantes
-    documentos = retriever.get_relevant_documents(pregunta)
+    documentos = retriever.invoke(pregunta)
     if not documentos:
         return "No se encontraron documentos relevantes para esta consulta."
 
