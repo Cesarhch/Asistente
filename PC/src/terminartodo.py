@@ -24,10 +24,9 @@ def detener_procesos():
     else:
         print("No hay micrófono activo para terminar.")
 
-            
 def borrar_base_datos_chroma():
-    RUTA_BASE_DATOS = "C:/Users/cesar/Desktop/serveria/Asistente-main/PC/src/rag/managment"
-    RUTA_BASE_DATOS_TECNICO = "C:/Users/cesar/Desktop/serveria/Asistente-main/PC/src/rag/tecnico"
+    RUTA_BASE_DATOS = "C:/ruta/rag/chroma_db"
+    RUTA_BASE_DATOS_TECNICO = "C:/ruta/rag/tecnico"
     try:
         if os.path.exists(RUTA_BASE_DATOS):
             shutil.rmtree(RUTA_BASE_DATOS)
@@ -44,7 +43,6 @@ def borrar_base_datos_chroma():
 
 def finalizar_todo():
     print("Iniciando cierre completo del sistema...")
-    borrar_base_datos_chroma()
     detener_procesos()
     cerrar_todo()
     print("Cierre completo realizado.")
