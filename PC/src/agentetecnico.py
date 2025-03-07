@@ -30,9 +30,9 @@ def consultar_agente_tecnico(pregunta):
             return "Por favor, especifica un directorio para contar los archivos."
 
     llm_local = ChatOllama(model="deepseek-r1:7b")
-    local_path="D:/serveria/Asistente-main/PC/src/rag/tecnico.txt"
+    local_path="C:/ruta/rag/tecnico.txt"
     collection_name="tecnico-rag"
-    custom_db_directory="D:/serveria/Asistente-main/PC/src/rag/tecnico"
+    custom_db_directory="C:/ruta/rag/tecnico"
     loader = TextLoader(file_path=local_path)
     data = loader.load()
 
