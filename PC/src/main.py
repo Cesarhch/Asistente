@@ -4,11 +4,16 @@ import threading
 from interfaz import mostrar_ventana
 from hardware import obtener_texto
 from contexto import Contexto
+from terminartodo import borrar_base_datos_chroma
+import subprocess
 
-# Ejecutar el segundo código en un subshell
-#subprocess.Popen(["python3", "datostxt.py"])
+#Ejecutamos actualizar_managment.py como un subproceso 
+subprocess.run(["python", "actualizar_managment.py"])
 
 def main():
+    if not Contexto.db_borrada:
+        borrar_base_datos_chroma()
+        Contexto.db_borrada = True
     # Inicializar el evento para detener audio
     Contexto.stop_audio = threading.Event()
     
