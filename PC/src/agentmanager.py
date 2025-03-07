@@ -3,7 +3,7 @@ from agentetecnico import consultar_agente_tecnico
 from unidecode import unidecode
 import string
 from contexto import Contexto
-
+# Seleccion del agente
 def responder_agente_managment(pregunta):
     # Determina a qué modelo consultar dependiendo del valor de creadoAsistente.
     print("Consultando al agente...")
