@@ -3,7 +3,7 @@ import librosa
 import numpy as np
 
 # Ruta del archivo de audio
-audio_file = "/Users/cesarhernandez/Documents/PlatformIO/Projects/voces/usuario.mp3"
+audio_file = "/ruta_al _archivo/usuario.mp3"
 
 # Cargar el archivo de audio
 audio_data, sr = librosa.load(audio_file, sr=None)
