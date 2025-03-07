@@ -19,7 +19,7 @@ def consultar_modelo_local(pregunta):
     Contexto.llm = ChatOllama(model="phi4")
 
     # Directorio donde se guardará la base de datos
-    base_path = "D:/serveria/Asistente-main/PC/src/rag/"
+    base_path = "C:/ruta/PC/src/rag/"
     collection_name = "managment"
     chroma_db_path = os.path.join(base_path, "chroma_db")  #  Asegura un subdirectorio
 
