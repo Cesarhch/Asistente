@@ -5,7 +5,7 @@ import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
 
 def save_cesar(information):
-  with open("/Users/cesarhernandez/Documents/PlatformIO/Projects/RAG-1/prueba2/datoscasa2.txt", "a", newline="") as file:  # Open in append mode
+  with open("/ruta/RAG-1/prueba2/datoscasa2.txt", "a", newline="") as file:  # Open in append mode
     file.write(information + "\n")
     file.close()
 
@@ -19,7 +19,7 @@ def limpiar_texto(texto):
 
 def contar_archivos_en_directorio(directorio):
     #Cuenta los archivos en un directorio dado.
-    directorio="/Users/cesarhernandez/Documents/PlatformIO/Projects"
+    directorio="/ruta/Projects"
     if not os.path.exists(directorio):
         return f"El directorio {directorio} no existe."
     
