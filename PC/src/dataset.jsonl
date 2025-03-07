@@ -1,0 +1,170 @@
+{"prompt": "Quien descubrio America?", "completion": "<call_function>modelo()"}
+{"prompt": "Cuanto es 7 + 5?", "completion": "<call_function>modelo()"}
+{"prompt": "Que es el ADN?", "completion": "<call_function>modelo()"}
+{"prompt": "Que significa CPU?", "completion": "<call_function>modelo()"}
+{"prompt": "Cual es la capital de Alemania?", "completion": "<call_function>modelo()"}
+{"prompt": "Que significa GPU?", "completion": "<call_function>modelo()"}
+{"prompt": "hola", "completion": "<call_function>modelo()"}
+{"prompt": "Hola como estas?", "completion": "<call_function>modelo()"}
+{"prompt": "Que tal estas hoy?", "completion": "<call_function>modelo()"}
+{"prompt": "acabo de llegar de trabajar", "completion": "<call_function>modelo()"}
+{"prompt": "Vamos a ver que hacemos hoy", "completion": "<call_function>modelo()"}
+{"prompt": "Estoy cansado", "completion": "<call_function>modelo()"}
+{"prompt": "Cuantos continentes hay en la Tierra?", "completion": "<call_function>modelo()"}
+{"prompt": "Cuantos paises hay en el mundo?", "completion": "<call_function>modelo()"}
+{"prompt": "Quien pinto la Mona Lisa?", "completion": "<call_function>modelo()"}
+{"prompt": "Cuando termino la Segunda Guerra Mundial?", "completion": "<call_function>modelo()"}
+{"prompt": "Que es el ARN?", "completion": "<call_function>modelo()"}
+{"prompt": "Que significa ULA?", "completion": "<call_function>modelo()"}
+{"prompt": "Cual es el planeta mas grande del sistema solar?", "completion": "<call_function>modelo()"}
+{"prompt": "Cuantos huesos tiene el cuerpo humano?", "completion": "<call_function>modelo()"}
+{"prompt": "Cuantos nervios tiene el cuerpo humano?", "completion": "<call_function>modelo()"}
+{"prompt": "Cuando termino la Primera Guerra Mundial?", "completion": "<call_function>modelo()"}
+{"prompt": "Cual es el planeta mas lejano del sistema solar?", "completion": "<call_function>modelo()"}
+{"prompt": "Cuantos dias tiene una semana?", "completion": "<call_function>modelo()"}
+{"prompt": "Cuantos meses tiene un ano?", "completion": "<call_function>modelo()"}
+{"prompt": "Que significa RAM?", "completion": "<call_function>modelo()"}
+{"prompt": "Que significa ROM?", "completion": "<call_function>modelo()"}
+{"prompt": "Cuantos presidentes a tenido Estados Unidos", "completion": "<call_function>modelo()"}
+{"prompt": "Cuantas estaciones del ano hay?", "completion": "<call_function>modelo()"}
+{"prompt": "Quien escribio el Cervantes?", "completion": "<call_function>modelo()"}
+{"prompt": "Cuantos oceanos hay en la Tierra?", "completion": "<call_function>modelo()"}
+{"prompt": "Cual es el idioma mas hablado en el mundo?", "completion": "<call_function>modelo()"}
+{"prompt": "Cuanto es 7 + 10?", "completion": "<call_function>modelo()"}
+{"prompt": "Cual es el ultimo dia de la semana?", "completion": "<call_function>modelo()"}
+{"prompt": "Cual es el primer dia de la semana", "completion": "<call_function>modelo()"}
+{"prompt": "Cual es el primer mes del ano?", "completion": "<call_function>modelo()"}
+{"prompt": "Cuantos dias hay en la Tierra?", "completion": "<call_function>modelo()"}
+{"prompt": "Cuantos es seis mas uno?", "completion": "<call_function>modelo()"}
+{"prompt": "Cuanto es 7 + 7?", "completion": "<call_function>modelo()"}
+{"prompt": "Cuantos mares importantes hay en la tierra?", "completion": "<call_function>modelo()"}
+{"prompt": "Quien escribio 'Cien anos de soledad'?", "completion": "<call_function>modelo()"}
+{"prompt": "Que nuevos avances hay en robotica?", "completion": "<call_function>search_net()"}
+{"prompt": "Busca los ultimos avances en inteligencia artificial", "completion": "<call_function>search_net()"}
+{"prompt": "Busca tutoriales sobre programacion de robots", "completion": "<call_function>search_net()"}
+{"prompt": "Encuentra aplicaciones innovadoras en la industria tecnologica", "completion": "<call_function>search_net()"}
+{"prompt": "Busca proximos eventos sobre robotica e IA", "completion": "<call_function>search_net()"}
+{"prompt": "Busca proyectos de robotica educativa para estudiantes", "completion": "<call_function>search_net()"}
+{"prompt": "Busca informacion relacionada con mecanica de robots", "completion": "<call_function>search_net()"}
+{"prompt": "Hay algun correo de la universidad", "completion": "<call_function>gmail()"}
+{"prompt": "Leeme los correos importantes", "completion": "<call_function>gmail()"}
+{"prompt": "Que dice el correo de SpinUOC?", "completion": "<call_function>gmail()"}
+{"prompt": "Lee el correo de Fundacion Esclerosis", "completion": "<call_function>gmail()"}
+{"prompt": "Tengo algun correo de la universidad?", "completion": "<call_function>gmail()"}
+{"prompt": "Cuantos emails tengo?", "completion": "<call_function>gmail()"}
+{"prompt": "Tengo correos nuevos?", "completion": "<call_function>gmail()"}
+{"prompt": "Muestrame los eventos programados para hoy en mi agenda", "completion": "<call_function>calendar()"}
+{"prompt": "Consulta mi agenda y dime si tengo tareas mañana", "completion": "<call_function>calendar()"}
+{"prompt": "Busca en mi agenda si tengo una tarea el proximo lunes", "completion": "<call_function>calendar()"}
+{"prompt": "Revisa mi calendario y dime qué tareas hay esta semana", "completion": "<call_function>calendar()"}
+{"prompt": "Consulta los eventos de la agenda para este mes.", "completion": "<call_function>calendar()"}
+{"prompt": "Dime si tengo alguna tarea pendiente esta tarde en mi agenda.", "completion": "<call_function>calendar()"}
+{"prompt": "Verifica en mi agenda si tengo disponibilidad el viernes.", "completion": "<call_function>calendar()"}
+{"prompt": "Consulta en la base de datos el estado del dispositivo ESP32.", "completion": "<call_function>tareas_db()"}
+{"prompt": "Busca en la base de datos los valores registrados por el sensor de temperatura.", "completion": "<call_function>tareas_db()"}
+{"prompt": "Revisa en la base de datos cuándo fue la última actualización del firmware.", "completion": "<call_function>tareas_db()"}
+{"prompt": "Dime cuántos registros hay en la base de datos sobre el consumo energético del sistema.", "completion": "<call_function>tareas_db()"}
+{"prompt": "Consulta en la base de datos si hay errores recientes en el sistema.", "completion": "<call_function>tareas_db()"}
+{"prompt": "Busca en la base de datos la configuración guardada para el robot bípedo.", "completion": "<call_function>tareas_db()"}
+{"prompt": "Revisa la base de datos y dime cuántos dispositivos están activos.", "completion": "<call_function>tareas_db()"}
+{"prompt": "Guarda esta nota en un archivo: 'Reunión con el equipo el viernes a las 10 AM'.", "completion": "<call_function>escribir()"}
+{"prompt": "Escribe en el archivo: 'Comprar componentes electrónicos para el proyecto'.", "completion": "<call_function>escribir()"}
+{"prompt": "Guarda en el archivo : 'Se completó la prueba del sensor infrarrojo'.", "completion": "<call_function>escribir()"}
+{"prompt": "Guarda esto que me has dicho en el archivo", "completion": "<call_function>escribir()"}
+{"prompt": "Escribe eso", "completion": "<call_function>escribir()"}
+{"prompt": "Guarda esto", "completion": "<call_function>escribir()"}
+{"prompt": "Guarda esto ultimo que hemos hablado", "completion": "<call_function>escribir()"}
+{"prompt": "Dime la temperatura actual registrada por el detector de temperatura.", "completion": "<call_function>sensor_db()"}
+{"prompt": "Consulta en la base de datos la última lectura de humedad.", "completion": "<call_function>sensor_db()"}
+{"prompt": "Revisa si el detector de presencia ha registrado movimiento recientemente.", "completion": "<call_function>sensor_db()"}
+{"prompt": "Dime cuál es el consumo de corriente en este momento", "completion": "<call_function>sensor_db()"}
+{"prompt": "Consulta en la base de datos si el relé está activado o desactivado.", "completion": "<call_function>sensor_db()"}
+{"prompt": "Busca los últimos valores registrados de temperatura y humedad.", "completion": "<call_function>sensor_db()"}
+{"prompt": "Revisa la base de datos y dime cuándo fue la última vez que el detector de presencia detectó movimiento.", "completion": "<call_function>sensor_db()"}
+{"prompt": "Enciende la luz del salón.", "completion": "<call_function>acciones_usb()"}
+{"prompt": "Apaga la luz de la habitación.", "completion": "<call_function>acciones_usb()"}
+{"prompt": "Enciende el ordenador.", "completion": "<call_function>acciones_usb()"}
+{"prompt": "Apaga el ordenador.", "completion": "<call_function>acciones_usb()"}
+{"prompt": "Enciende la tele.", "completion": "<call_function>acciones_usb()"}
+{"prompt": "Apaga la tele.", "completion": "<call_function>acciones_usb()"}
+{"prompt": "Enciende la luz de la cocina", "completion": "<call_function>acciones_usb()"}
+{"prompt": "Que tiempo va a hacer el lunes?", "completion": "<call_function>get_weather()"}
+{"prompt": "Que tiempo hace en Valencia?", "completion": "<call_function>get_weather()"}
+{"prompt": "Que tiempo va a hacer esta semana en Alemania?", "completion": "<call_function>get_weather()"}
+{"prompt": "Que tiempo va a hacer la proxima semana?", "completion": "<call_function>get_weather()"}
+{"prompt": "Que temperatura va a hacer mañana?", "completion": "<call_function>get_weather()"}
+{"prompt": "Que temperatura va a hacer la semana que viene?", "completion": "<call_function>get_weather()"}
+{"prompt": "Va a llover el fin de semana?", "completion": "<call_function>get_weather()"}
+{"prompt": "Cuántos archivos hay en la carpeta Descargas?", "completion": "<call_function>computer()"}
+{"prompt": "Cuantas carpetas hay dentro de Documentos.", "completion": "<call_function>computer()"}
+{"prompt": "Busca todos los archivos con extensión .txt en la carpeta Escritorio.", "completion": "<call_function>computer()"}
+{"prompt": "Lista los archivos más recientes en la carpeta Proyectos.", "completion": "<call_function>computer()"}
+{"prompt": "Cuenta cuántos directorios hay en Escritorio.", "completion": "<call_function>computer()"}
+{"prompt": "Cuenta cuántos carpetas hay en Documentos.", "completion": "<call_function>computer()"}
+{"prompt": "Dime cuantos archivos hay en Documentos.", "completion": "<call_function>computer()"}
+{"prompt": "Busca las últimas noticias sobre robótica", "completion": "<call_function>noticias()"}
+{"prompt": "Encuentra artículos recientes sobre avances en inteligencia artificial.", "completion": "<call_function>noticias()"}
+{"prompt": "Muestra las noticias tecnológicas más destacadas del día.", "completion": "<call_function>noticias()"}
+{"prompt": "Dime cuáles son las tendencias en robótica esta semana.", "completion": "<call_function>noticias()"}
+{"prompt": "Consulta las novedades sobre nuevos dispositivos tecnológicos.", "completion": "<call_function>noticias()"}
+{"prompt": "Busca información sobre desarrollos recientes en automatización.", "completion": "<call_function>noticias()"}
+{"prompt": "Encuentra noticias sobre las últimas innovaciones en robótica industrial.", "completion": "<call_function>noticias()"}
+{"prompt": "Revisa mi bandeja de entrada", "completion": "<call_function>gmail()"}
+{"prompt": "Tengo algún mensaje nuevo en mi correo?", "completion": "<call_function>gmail()"}
+{"prompt": "Dime los correos recientes", "completion": "<call_function>gmail()"}
+{"prompt": "Cuántos correos sin leer tengo?", "completion": "<call_function>gmail()"}
+{"prompt": "Hay algún correo importante?", "completion": "<call_function>gmail()"}
+{"prompt": "Muestra los correos que aún no he leído", "completion": "<call_function>gmail()"}
+{"prompt": "Busca un correo de la universidad", "completion": "<call_function>gmail()"}
+{"prompt": "Lee los últimos correos recibidos", "completion": "<call_function>gmail()"}
+{"prompt": "Revisa si tengo algún correo urgente", "completion": "<call_function>gmail()"}
+{"prompt": "Cuántos correos nuevos tengo hoy?", "completion": "<call_function>gmail()"}
+{"prompt": "Tengo algún correo de mi profesor?", "completion": "<call_function>gmail()"}
+{"prompt": "Hay correos de trabajo en mi bandeja?", "completion": "<call_function>gmail()"}
+{"prompt": "Búscame los correos importantes de esta semana", "completion": "<call_function>gmail()"}
+{"prompt": "Tengo algún correo sobre mi matrícula?", "completion": "<call_function>gmail()"}
+{"prompt": "Revisa si hay correos de confirmación de eventos", "completion": "<call_function>gmail()"}
+{"prompt": "Busca si hay correos con documentos adjuntos", "completion": "<call_function>gmail()"}
+{"prompt": "Mira si tengo respuestas a mis correos enviados", "completion": "<call_function>gmail()"}
+{"prompt": "Hay algún correo relacionado con mi tesis?", "completion": "<call_function>gmail()"}
+{"prompt": "Cuántos correos promocionales tengo?", "completion": "<call_function>gmail()"}
+{"prompt": "Dime si recibí algún correo de mi tutor", "completion": "<call_function>gmail()"}
+{"prompt": "Busca correos de facturación o pagos", "completion": "<call_function>gmail()"}
+{"prompt": "Revisa si tengo algún correo de mi jefe", "completion": "<call_function>gmail()"}
+{"prompt": "Mira si hay correos pendientes de leer", "completion": "<call_function>gmail()"}
+{"prompt": "Busca un email sobre mi suscripción", "completion": "<call_function>gmail()"}
+{"prompt": "Tengo correos importantes sin leer?", "completion": "<call_function>gmail()"}
+{"prompt": "Hay algún mensaje en mi bandeja de entrada?", "completion": "<call_function>gmail()"}
+{"prompt": "Cuántos correos tengo en la bandeja de entrada?", "completion": "<call_function>gmail()"}
+{"prompt": "Lee los correos que llegaron hoy", "completion": "<call_function>gmail()"}
+{"prompt": "Dime si hay algún correo de Amazon", "completion": "<call_function>gmail()"}
+{"prompt": "Tengo correos nuevos esta semana?", "completion": "<call_function>gmail()"}
+{"prompt": "Busca correos relacionados con pagos", "completion": "<call_function>gmail()"}
+{"prompt": "Revisa si tengo correos con archivos adjuntos", "completion": "<call_function>gmail()"}
+{"prompt": "Dime si recibí algún correo de soporte técnico", "completion": "<call_function>gmail()"}
+{"prompt": "Mira si tengo correos de confirmación de reservas", "completion": "<call_function>gmail()"}
+{"prompt": "Tengo mensajes nuevos en mi correo?", "completion": "<call_function>gmail()"}
+{"prompt": "Cuántos correos hay en la carpeta de spam?", "completion": "<call_function>gmail()"}
+{"prompt": "Lee los correos no leídos de esta semana", "completion": "<call_function>gmail()"}
+{"prompt": "Tengo algún correo de servicio al cliente?", "completion": "<call_function>gmail()"}
+{"prompt": "Revisa si tengo correos de mi familia", "completion": "<call_function>gmail()"}
+{"prompt": "Dime si hay correos con información sobre mi vuelo", "completion": "<call_function>gmail()"}
+{"prompt": "Busca correos sobre el proyecto en el que trabajo", "completion": "<call_function>gmail()"}
+{"prompt": "Mira si tengo correos de recordatorio de citas", "completion": "<call_function>gmail()"}
+{"prompt": "Revisa mi bandeja de entrada y dime si hay algo nuevo", "completion": "<call_function>gmail()"}
+{"prompt": "Hay algún correo sobre mi cuenta bancaria?", "completion": "<call_function>gmail()"}
+{"prompt": "Busca un correo con el asunto 'reunión'", "completion": "<call_function>gmail()"}
+{"prompt": "Dime si hay correos que necesiten respuesta", "completion": "<call_function>gmail()"}
+{"prompt": "Cuántos correos sin leer tengo en total?", "completion": "<call_function>gmail()"}
+{"prompt": "Mira si hay correos que contengan la palabra 'factura'", "completion": "<call_function>gmail()"}
+{"prompt": "Tengo algún correo de mi abogado?", "completion": "<call_function>gmail()"}
+{"prompt": "Dime si recibí un correo de confirmación de compra", "completion": "<call_function>gmail()"}
+{"prompt": "Busca correos de la universidad sobre exámenes", "completion": "<call_function>gmail()"}
+{"prompt": "Cuántos correos de promoción tengo?", "completion": "<call_function>gmail()"}
+{"prompt": "Mira si hay algún correo de actualización de software", "completion": "<call_function>gmail()"}
+{"prompt": "Revisa si tengo correos de nuevas oportunidades de trabajo", "completion": "<call_function>gmail()"}
+{"prompt": "Dime si hay algún correo con información de eventos", "completion": "<call_function>gmail()"}
+{"prompt": "Cuántos correos recibí en el último mes?", "completion": "<call_function>gmail()"}
+{"prompt": "Tengo correos relacionados con becas?", "completion": "<call_function>gmail()"}
+{"prompt": "Revisa si hay correos que contengan mi número de referencia", "completion": "<call_function>gmail()"}
+{"prompt": "Dime si tengo correos de amigos recientes", "completion": "<call_function>gmail()"}
