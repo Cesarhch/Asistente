@@ -15,7 +15,7 @@ def play_audio(text):
     #Convierte texto a voz y lo reproduce.
     #Usa gTTS por defecto y pyttsx3 con la voz 'Mónica' como respaldo si gTTS falla.
     def audio_worker():
-        audio_file = "C:/Users/cesar/Desktop/serveria/Asistente-main/PC/src/temp.mp3"
+        audio_file = "C:/ruta/temp.mp3"
         try:
             # Intentar usar gTTS
             tts = gTTS(text=text, lang="es")
