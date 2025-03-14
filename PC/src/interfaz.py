@@ -3,39 +3,70 @@ from tkinter import *
 from contexto import Contexto
 
 def mostrar_ventana(callback_obtener_texto):
-    # Detectar el sistema operativo
     sistema_operativo = platform.system()
-
-    # Muestra una ventana con una entrada de texto y un botón.
     Contexto.ventana = Tk()
     ventana = Contexto.ventana
 
-    # Configuraciones específicas según el sistema operativo
-    if sistema_operativo == "Darwin":  # macOS
-        ventana.geometry("+%d+%d" % (ventana.winfo_screenwidth() - 300, 0))
-        ventana.title("Lara - macOS")
-    elif sistema_operativo == "Windows":
-        ventana.geometry("300x150+%d+%d" % (ventana.winfo_screenwidth() - 300, 0))  # Derecha, arriba
-        ventana.title("Lara - Windows")
-    else:  # Linux o cualquier otro sistema
-        ventana.geometry("+%d+%d" % (ventana.winfo_screenwidth() - 300, 0))  # Derecha, arriba
-        ventana.title("Lara - Otro SO")
+    # Obtener dimensiones de la pantalla
+    ancho_pantalla = ventana.winfo_screenwidth()
+    alto_pantalla = ventana.winfo_screenheight()
 
-    # Crear un widget de entrada de texto
-    entrada = Entry(ventana)
-    entrada.pack(pady=10)
+    # Definir márgenes (5% del ancho, 8% del alto)
+    margen_horizontal = int(ancho_pantalla * 0.05)
+    margen_vertical = int(alto_pantalla * 0.08)
+
+    # Calcular tamaño de la ventana con márgenes
+    ancho_ventana = ancho_pantalla - 2 * margen_horizontal
+    alto_ventana = alto_pantalla - 2 * margen_vertical
+
+    # Configurar tamaño y posición centrada
+    ventana.geometry(f"{ancho_ventana}x{alto_ventana}+{margen_horizontal}+{margen_vertical}")
+    ventana.title("Interacción con el Asistente")
+
+    # Marco para el área de conversación con scroll
+    frame_texto = Frame(ventana)
+    frame_texto.pack(pady=20, padx=20, expand=True, fill=BOTH)
+
+    # Scrollbar vertical
+    scrollbar = Scrollbar(frame_texto)
+    scrollbar.pack(side=RIGHT, fill=Y)
+
+    # Área de texto con scroll
+    Contexto.texto_conversacion = Text(
+        frame_texto, height=25, width=80, wrap=WORD, font=("Arial", 14), yscrollcommand=scrollbar.set
+    )
+    Contexto.texto_conversacion.pack(expand=True, fill=BOTH)
+    scrollbar.config(command=Contexto.texto_conversacion.yview)  # Conectar el scroll con el área de texto
+
+    # Marco para los controles de entrada
+    frame_entrada = Frame(ventana)
+    frame_entrada.pack(pady=10, fill=X, padx=20)
+
+    # Campo de entrada de texto
+    entrada = Entry(frame_entrada, font=("Arial", 16), width=70)
+    entrada.pack(side=LEFT, expand=True, fill=X, padx=10)
 
     def procesar_y_limpiar(event=None):
         callback_obtener_texto(entrada, ventana)
-        entrada.delete(0, END)  # Limpia el campo de entrada
+        entrada.delete(0, END)
 
     entrada.bind('<Return>', procesar_y_limpiar)
 
-    # Crear un botón para obtener el texto
-    boton = Button(ventana, text="Obtener texto", command=lambda: (callback_obtener_texto(entrada, ventana), entrada.delete(0, END)))
-    boton.pack(pady=5)
+    # Botón para enviar el texto
+    boton = Button(frame_entrada, text="Enviar", font=("Arial", 14), command=lambda: (callback_obtener_texto(entrada, ventana), entrada.delete(0, END)))
+    boton.pack(side=RIGHT, padx=10)
+
+    # Botón para cerrar la ventana
+    #boton_cerrar = Button(ventana, text="Cerrar", font=("Arial", 14), command=ventana.destroy)
+    #boton_cerrar.pack(pady=10)
 
     return ventana
+
+def actualizar_conversacion(texto_usuario, texto_asistente):
+    if Contexto.ventana and Contexto.texto_conversacion:
+        Contexto.texto_conversacion.insert(END, f"Usuario: {texto_usuario}\n", "usuario")
+        Contexto.texto_conversacion.insert(END, f"Asistente: {texto_asistente}\n\n", "asistente")
+        Contexto.texto_conversacion.see(END)  # Auto-scroll al final
 
 def cerrar_todo():
     # Cierra la ventana y realiza cualquier limpieza necesaria.
